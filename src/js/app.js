@@ -2,6 +2,7 @@
 
 /**
  * Adding the size of the progress bar
+ * @function
  * @callback
  */
 document.querySelector('#progressBar').addEventListener('mdl-componentupgraded', function() {
@@ -36,6 +37,7 @@ document.querySelector('#progressBar').addEventListener('mdl-componentupgraded',
      * с ненулевой длиной в форме (вырожденные сегменты с нулевой длиной, 
      * заданные конечные точки и контрольные точки находятся точно в одном 
      * и том же положении, пропущены).
+     * https://developer.mozilla.org/ru/docs/Web/API/Canvas_API/Tutorial/Применение_стилей_и_цветов
      * -------------------------------------
      * ENG: The lineJoin property determines how 
      * two connecting segments (of lines, arcs or curves) with non-zero lengths 
@@ -49,6 +51,7 @@ document.querySelector('#progressBar').addEventListener('mdl-componentupgraded',
      * Для этого свойства есть 
      * три возможных значения: butt, round и square. 
      * По умолчанию для этого свойства установлено значение butt.
+     * https://developer.mozilla.org/ru/docs/Web/API/Canvas_API/Tutorial/Применение_стилей_и_цветов
      * ----------------
      * ENG:The lineCap property determines how the end 
      * points of every line are drawn. 
@@ -63,6 +66,7 @@ document.querySelector('#progressBar').addEventListener('mdl-componentupgraded',
      * RU: Это свойство задает толщину текущей строки. 
      * Значения должны быть положительными. 
      * По умолчанию для этого значения установлено 1.0 единицы.
+     * https://developer.mozilla.org/ru/docs/Web/API/Canvas_API/Tutorial/Применение_стилей_и_цветов
      * ----------------
      * ENG: This property sets the current line thickness. 
      * Values must be positive numbers.
@@ -74,18 +78,23 @@ document.querySelector('#progressBar').addEventListener('mdl-componentupgraded',
     /**
      * @param {boolean} isDrawing
      * RU: Если кнопка мыши нажата и мы можем рисовать, то true, а иначе false
+     * ----------------
      * ENG: If the mouse button is clicked and we can draw, then true, otherwise false
      * @param {number} lastX 
      * RU: Определяем положение по x
+     * ----------------
      * ENG: Determine the position of x
      * @param {number} lastY 
      * RU: Определяем положение по y
+     * ----------------
      * ENG: Determine the position of y
      * @param {number} hue 
      * RU: Оттенок
+     * ----------------
      * ENG: Hue
      * @param {boolean} direction
      * RU: Напраление по координате изначально true
+     * ----------------
      * ENG: The coordinate direction is initially true
      */
     let isDrawing = false,
@@ -93,5 +102,127 @@ document.querySelector('#progressBar').addEventListener('mdl-componentupgraded',
     lastY     = 0,
     hue       = 0,
     direction = true;
+
+    /**
+     * @constructor
+     * @param {number} 
+     * RU: Функция для вырисовывания, которая принимает число (координаты по x и y)
+     * ----------------
+     * ENG: A function for drawing that takes a number (x and y coordinates)
+     */
+    function draw(e){
+        /**
+         * @returns
+         * RU: Если isDrawing === false - то выходим из функции
+         * ----------------
+         * ENG: If isDrawing === false, then we exit the function
+         */
+        if(!isDrawing) return;
+        /**
+         * @param {string} ctx.strokeStyle
+         * RU: Hsl - это формат цвета, при движении мыши переменная hue увеличивается
+         * и соотвественно за счёт чего цвет меняется
+         * ----------------
+         * ENG: Hsl is a color format, when the mouse moves, the variable hue increases
+          * and, as a result, the color changes
+         */
+        ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+        /**
+         * @function beginPath
+         * RU: Создает новый контур. После создания используется 
+         * в дальнейшем командами рисования при построении контуров.
+         * https://developer.mozilla.org/ru/docs/Web/API/Canvas_API/Tutorial/Рисование_фигур
+         * ----------------
+         * ENG: Creates a new path. After the creation is used
+          * In the future, drawing commands when building contours.
+         */
+        ctx.beginPath();
+        /**
+         * @function moveTo
+         * RU: Перемещает перо в точку с координатами x и y.
+         * https://developer.mozilla.org/ru/docs/Web/API/Canvas_API/Tutorial/Рисование_фигур
+         * ----------------
+         * ENG: Moves the pen to a point with the coordinates x and y.
+         */
+        //start from
+        ctx.moveTo(lastX, lastY);
+        /**
+         * @function lineTo
+         * RU: Рисует линию с текущей позиции до позиции, определенной x и y
+         * https://developer.mozilla.org/ru/docs/Web/API/Canvas_API/Tutorial/Рисование_фигур
+         * ----------------
+         * ENG: Draws a line from the current position to the position defined by x and y
+         */
+        //go to
+        ctx.lineTo(e.offsetX, e.offsetY);
+        /**
+         * @function lineTo
+         * RU: Рисует фигуру с внешней обводкой.
+         * https://developer.mozilla.org/ru/docs/Web/API/Canvas_API/Tutorial/Рисование_фигур
+         * ----------------
+         * ENG: Draws a shape with an outer stroke.
+         */
+        ctx.stroke();
+        /**
+         * @param {number} lastX = e.offsetX 
+         * @param {number} lastY = e.offsetY
+         * @param {number} e.offsetX 
+         * RU: Координаты по X
+         * ----------------
+         * ENG: Coordinates of X
+         * @param {number} e.offsetY
+         * * RU: Координаты по Y
+         * ----------------
+         * ENG: Coordinates of Y
+         */
+        [lastX, lastY] = [e.offsetX, e.offsetY];
+        
+        /**
+         * @param hue
+         * RU: Увеличиваем оттенок - за счёт чего меняется цвет в hsl формате
+         * ----------------
+         * ENG: Increase the hue - due to what changes the color in the hsl format
+         */
+        hue++;
+        /**
+         * @returns hue
+         * RU: Если hue больше, либо равно 360, то 
+         * мы перебрасываем его обратно на ноль и начинаем инкрементировать
+         * снова
+         * ----------------
+         * ENG: If the hue is greater than or equal to 360, then
+          * we reset it back to zero and start incrementing
+         */
+        if(hue >= 360){
+          hue = 0;
+        }
+
+        /**
+         * @returns direction
+         * RU: если толщина строки больше или равно 10,
+         *  или меньше или равно, то мы direction меняем на false значение
+         * --------------
+         * if the line thickness is greater than or equal to 10,
+         * or less or equal, then we change the direction to false
+         */
+        if(ctx.lineWidth >= 100 || ctx.lineWidth <= 1){
+          direction = !direction;
+        }
+        
+        /**
+         * @returns ctx.lineWidth++;
+         * RU: Если direction === true, то мы увеличиваем толщину, а если
+         * direction === false то мы уменьшаем толщину
+         * --------------
+         * ENG: If direction === true, then we increase the thickness, and if
+         * direction === false then we reduce the thickness
+         */
+        if(direction){
+          ctx.lineWidth++;
+      }else{
+          ctx.lineWidth--;
+       }
+        
+      }
 
   })()
