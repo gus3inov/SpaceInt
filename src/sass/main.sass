@@ -46,6 +46,22 @@ body textarea:required:valid
 html, body
   font-family: 'Roboto', 'Helvetica', sans-serif
 
+.space-progress
+	width: 100% 
+
+.mdl-progress>.bar
+	animation-name: progressLoad 
+	animation-duration: 3s
+
+@keyframes progressLoad
+	0%
+		width: 0%
+	100%
+		width: 100%
+
+.mdl-progress>.progressbar
+	background: #53B14F
+
 .demo-avatar
   width: 48px
   height: 48px
