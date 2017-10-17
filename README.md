@@ -17,6 +17,7 @@
 Dillinger uses a number of open source projects to work properly:
 
 * [HTM5](https://www.w3schools.com/html/html5_canvas.asp) - HTML5 Canvas 
+* [Babel-ES2015](https://babeljs.io/) - Babel is a JavaScript compiler.
 * [Material UI](https://github.com/google/material-design-lite) - Material Design Lite (MDL) lets you add a Material Design look and feel to your static content websites.
 * [node.js]() - evented I/O for the backend
 * [Express](http://expressjs.com/en/api.html) - fast node.js network app framework [@tjholowaychuk]
