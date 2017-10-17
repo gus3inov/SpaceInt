@@ -22,7 +22,7 @@ const babel 	   = require('gulp-babel');
 gulp.task('browser-sync', ['styles', 'scripts'], ()=> {
 		browserSync.init({
 				server: {
-						baseDir: "./src"
+						baseDir: "./dist"
 				},
 				notify: false
 		});

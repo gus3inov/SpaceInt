@@ -5,9 +5,9 @@
  * @function
  * @callback
  */
-document.querySelector('#progressBar').addEventListener('mdl-componentupgraded', function() {
-    this.MaterialProgress.setProgress(100);
-  });
+// document.querySelector('#progressBar').addEventListener('mdl-componentupgraded', function() {
+//     this.MaterialProgress.setProgress(100);
+//   });
 
   /**
    * @param {string} canvas - take elem <canvas></canvas>
@@ -281,11 +281,11 @@ document.querySelector('#progressBar').addEventListener('mdl-componentupgraded',
        */
       canvas.addEventListener('mouseout', () => isDrawing = false);
       
-      MylineWidth.oninput = () => {
-        let currentVal = this.value.trim();
-          if(currentVal) return ctx.lineWidth = currentVal;
-        console.log(currentVal);
-      }
+    //   MylineWidth.oninput = () => {
+    //     let currentVal = this.value.trim();
+    //       if(currentVal) return ctx.lineWidth = currentVal;
+    //     console.log(currentVal);
+    //   }
       
       //If we want change color in manual
       /*MyColorStroke.oninput = function() {
@@ -294,9 +294,9 @@ document.querySelector('#progressBar').addEventListener('mdl-componentupgraded',
         console.log(currentVal);
       }*/
       
-      MySelect.onchange = () => {
-         let lineJoinValue = document.getElementById("MySelect").value;
-        ctx.lineCap   = lineJoinValue;
-      }
+    //   MySelect.onchange = () => {
+    //      let lineJoinValue = document.getElementById("MySelect").value;
+    //     ctx.lineCap   = lineJoinValue;
+    //   }
 
   })()
