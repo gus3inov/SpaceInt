@@ -45,19 +45,27 @@ body textarea:required:valid
 
 html, body
   font-family: 'Roboto', 'Helvetica', sans-serif
+  overflow-y: hidden;
 
-.space-progress
-	width: 100% 
+//Style for progress bar 	
 
-.mdl-progress>.bar
-	animation-name: progressLoad 
-	animation-duration: 3s
+// .space-progress
+// 	width: 100%
+// 	animation-name: displayNone 
+// 	animation-delay: 3s 
 
-@keyframes progressLoad
-	0%
-		width: 0%
-	100%
-		width: 100%
+// .mdl-progress>.bar
+// 	animation-name: progressLoad 
+// 	animation-duration: 3s
+
+// @keyframes progressLoad
+// 	0%
+// 		width: 0%
+// 	70%
+// 		width: 100%
+// 	100%
+// 		display: none
+	
 
 .mdl-progress>.progressbar
 	background: #53B14F

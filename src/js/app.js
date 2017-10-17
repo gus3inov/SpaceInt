@@ -225,4 +225,78 @@ document.querySelector('#progressBar').addEventListener('mdl-componentupgraded',
         
       }
 
+      /**
+       * @event canvas
+       * RU: При нажатии на левую кнопку мыши, мы меняем
+       * переменную isDrawing на true, за счёт чего функция продолжает
+       * свою работу.
+       * Далее присваиваем координаты к переменным lastX и lastY, за счёт
+       * чего ctx.moveTo(lastX, lastY); срабатывает и функция moveTo рисует
+       * с начала этой позиции
+       * --------------
+       * ENG: When you click on the left mouse button, we change
+       * The variable isDrawing to true, due to what the function continues
+       * my job.
+       * Next, assign coordinates to variables lastX and lastY, at the cost of
+       * what is ctx.moveTo (lastX, lastY); triggers and the moveTo function draws
+       * from the beginning of this position
+       */
+      canvas.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        [lastX, lastY] = [e.offsetX, e.offsetY];
+      });
+                    
+      /**
+       * @event draw
+       * RU: При движении мыши мы выполняем функции draw
+       * --------------
+       * ENG: When the mouse moves, we perform the functions draw
+       */
+      canvas.addEventListener('mousemove', draw);
+      /**
+       * @event arrowFunc
+       * RU: После вызова функции мы снова присваиваем переменной
+       * значение true
+       * --------------
+       * ENG: After calling the function, we assign the variable again
+       * true
+       */
+      canvas.addEventListener('mousedown', () => isDrawing = true);
+      /**
+       * @event arrowFunc
+       * RU: Когда мы отпустили левую кнопку мыши переменной
+       * isDrawing присваивается значение false и работа draw функции прекращается
+       * --------------
+       * ENG: When we released the left mouse button of the variable
+       * isDrawing is set to false and the work of the draw function is terminated
+       */
+      canvas.addEventListener('mouseup', () => isDrawing = false);
+      /**
+       * @event arrowFunc
+       * RU: Если мышь вышла за пределы canvas, то переменной
+       * isDrawing присваивается значение false и работа draw функции прекращается
+       * --------------
+       * ENG: If the mouse went beyond the canvas, then the variable
+        * isDrawing is set to false and the work of the draw function is terminated
+       */
+      canvas.addEventListener('mouseout', () => isDrawing = false);
+      
+      MylineWidth.oninput = () => {
+        let currentVal = this.value.trim();
+          if(currentVal) return ctx.lineWidth = currentVal;
+        console.log(currentVal);
+      }
+      
+      //If we want change color in manual
+      /*MyColorStroke.oninput = function() {
+        let currentVal = this.value;
+          if(currentVal) return ctx.strokeStyle  = currentVal;
+        console.log(currentVal);
+      }*/
+      
+      MySelect.onchange = () => {
+         let lineJoinValue = document.getElementById("MySelect").value;
+        ctx.lineCap   = lineJoinValue;
+      }
+
   })()
