@@ -1,5 +1,5 @@
 (function(){
-
+console.log("dd");
 /**
  * Adding the size of the progress bar
  * @function
