@@ -1,7 +1,11 @@
 # SpaceInt
 
 ![N|Solid](https://img.shields.io/npm/v/@cycle/core.svg)     [![AppVeyor](https://img.shields.io/appveyor/ci/gruntjs/grunt.svg)]() [![bitHound](https://img.shields.io/bithound/dependencies/github/rexxars/sse-channel.svg)]() [![CocoaPods](https://img.shields.io/cocoapods/metrics/doc-percent/AFNetworking.svg)]()
-Spaceint - this is an online visual editor.
+
+
+# SpaceInt - this is an online visual editor.
+
+
 ![N|Solid](https://cdn2.iconfinder.com/data/icons/designer-skills/128/code-programming-html-markup-develop-layout-language-128.png)![N|Solid](https://cdn2.iconfinder.com/data/icons/designer-skills/128/code-programming-javascript-software-develop-command-language-128.png)![N|Solid](https://cdn2.iconfinder.com/data/icons/designer-skills/128/sass-128.png)![N|Solid](https://cdn2.iconfinder.com/data/icons/designer-skills/128/github-repository-svn-manage-files-contribute-branch-128.png)![N|Solid](https://cdn.iconscout.com/public/images/icon/free/png-128/gulp-company-brand-logo-328e8b9317c12a08-128x128.png)
 
   - Type some Markdown on the left
