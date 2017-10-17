@@ -18,9 +18,9 @@ Dillinger uses a number of open source projects to work properly:
 
 * [HTM5](https://www.w3schools.com/html/html5_canvas.asp) - HTML5 Canvas 
 * [Material UI](https://github.com/google/material-design-lite) - Material Design Lite (MDL) lets you add a Material Design look and feel to your static content websites.
-* [node.js] - evented I/O for the backend
-* [Express] - fast node.js network app framework [@tjholowaychuk]
-* [Gulp] - the streaming build system
+* [node.js]() - evented I/O for the backend
+* [Express](http://expressjs.com/en/api.html) - fast node.js network app framework [@tjholowaychuk]
+* [Gulp](https://gulpjs.com/) - the streaming build system
 * [Sass](https://cdn.iconscout.com/public/images/icon/free/png-128/gulp-company-brand-logo-328e8b9317c12a08-128x128.png) - Sass is the most developed and stable extension of CSS professional level.
 
 
