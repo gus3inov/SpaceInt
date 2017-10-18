@@ -1,5 +1,4 @@
 (function(){
-
 /**
  * Adding the size of the progress bar
  * @function

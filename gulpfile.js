@@ -63,8 +63,8 @@ gulp.task('styles', ()=> {
 
 //Live reload for sass, js, html
 gulp.task('watch', ()=> {
-	gulp.watch('dist/css/*.css', ['styles']);
-	gulp.watch('dist/js/*.js').on("change", browserSync.reload);
+	gulp.watch('src/sass/*.sass', ['styles']);
+	gulp.watch('src/js/*.js', ['scripts']).on("change", browserSync.reload);
 	gulp.watch('dist/*.html').on('change', browserSync.reload);
 });
 
