@@ -22,7 +22,7 @@ const babel 	   = require('gulp-babel');
 gulp.task('browser-sync', ['styles', 'scripts'], ()=> {
 		browserSync.init({
 				server: {
-						baseDir: "./src"
+						baseDir: "./dist"
 				},
 				notify: false
 		});
@@ -36,6 +36,7 @@ gulp.src('src/**/*.js')
 	.pipe(babel({
 		presets: ['env']
 	}))
+	
 	.pipe(concat('all.js'))
 	.pipe(sourcemaps.write('.'))
 	.pipe(gulp.dest('dist'))
@@ -55,16 +56,16 @@ gulp.task('styles', ()=> {
 	.pipe(autoprefixer({browsers: ['last 15 versions'], cascade: false}))
 	//See clean options https://github.com/jakubpawlowicz/clean-css#how-to-use-clean-css-api
 	.pipe(cleanCSS())
-	.pipe(gulp.dest('src/css'))
+	.pipe(gulp.dest('dist/css'))
 	.pipe(browserSync.stream());
 });
 
 
 //Live reload for sass, js, html
 gulp.task('watch', ()=> {
-	gulp.watch('src/sass/*.sass', ['styles']);
-	gulp.watch('src/js/*.js').on("change", browserSync.reload);
-	gulp.watch('src/*.html').on('change', browserSync.reload);
+	gulp.watch('dist/css/*.css', ['styles']);
+	gulp.watch('dist/js/*.js').on("change", browserSync.reload);
+	gulp.watch('dist/*.html').on('change', browserSync.reload);
 });
 
 

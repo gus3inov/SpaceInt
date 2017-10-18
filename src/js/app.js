@@ -1,5 +1,5 @@
 (function(){
-console.log("dd");
+
 /**
  * Adding the size of the progress bar
  * @function
@@ -298,5 +298,6 @@ console.log("dd");
     //      let lineJoinValue = document.getElementById("MySelect").value;
     //     ctx.lineCap   = lineJoinValue;
     //   }
+
 
   })()
