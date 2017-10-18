@@ -111,7 +111,18 @@
 						<div class="mdl-snackbar__text"></div>
 						<button class="mdl-snackbar__action" type="button"></button>
 					</div>
-					<button id="demo-show-snackbar" class="mdl-button mdl-js-button mdl-button--raised" type="button">Show Snackbar</button>
+					<div class="bottom-toolbar">
+							<button id="demo-show-snackbar" class="mdl-button mdl-js-button mdl-button--raised" type="button">Show Snackbar</button>
+							<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+									<input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
+									<span class="mdl-switch__label"></span>
+								</label>
+								<div class="bottom-toolbar__line-width">
+										<input class="mdl-slider mdl-js-slider" type="range"
+										min="0" max="100" value="25" tabindex="0">
+								</div>
+								<div class="bottom-toolbar__color"><input type="color"></div>
+					</div>
 	<div class="hidden">
 	</div>
 	<script src="js/all.js"></script>

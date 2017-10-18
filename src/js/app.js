@@ -14,7 +14,7 @@
    */
     const canvas = document.querySelector('#draw');
     const ctx    = canvas.getContext('2d');
-    
+
     /**
      * @param {number} canvas.width Get the full width of the screen
      */
