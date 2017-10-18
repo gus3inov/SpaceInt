@@ -37,7 +37,7 @@ gulp.src('src/**/*.js')
 		presets: ['env']
 	}))
 	
-	.pipe(concat('all.js'))
+	.pipe(concat('js/all.js'))
 	.pipe(sourcemaps.write('.'))
 	.pipe(gulp.dest('dist'))
 );
