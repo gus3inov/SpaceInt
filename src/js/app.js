@@ -109,6 +109,7 @@
      * ----------------
      * ENG: A function for drawing that takes a number (x and y coordinates)
      */
+
     function draw(e){
         /**
          * @returns
@@ -155,7 +156,7 @@
         //go to
         ctx.lineTo(e.offsetX, e.offsetY);
         /**
-         * @function lineTo
+         * @function stroke
          * RU: Рисует фигуру с внешней обводкой.
          * https://developer.mozilla.org/ru/docs/Web/API/Canvas_API/Tutorial/Рисование_фигур
          * ----------------
@@ -204,9 +205,9 @@
          * if the line thickness is greater than or equal to 10,
          * or less or equal, then we change the direction to false
          */
-        if(ctx.lineWidth >= 100 || ctx.lineWidth <= 1){
-          direction = !direction;
-        }
+        // if(ctx.lineWidth >= 100 || ctx.lineWidth <= 1){
+        //   direction = !direction;
+        // }
         
         /**
          * @returns ctx.lineWidth++;
@@ -216,11 +217,11 @@
          * ENG: If direction === true, then we increase the thickness, and if
          * direction === false then we reduce the thickness
          */
-        if(direction){
-          ctx.lineWidth++;
-      }else{
-          ctx.lineWidth--;
-       }
+      //   if(direction){
+      //     ctx.lineWidth++;
+      // }else{
+      //     ctx.lineWidth--;
+      //  }
         
       }
 
@@ -280,12 +281,12 @@
        */
       canvas.addEventListener('mouseout', () => isDrawing = false);
       
-    //   MylineWidth.oninput = () => {
-    //     let currentVal = this.value.trim();
-    //       if(currentVal) return ctx.lineWidth = currentVal;
-    //     console.log(currentVal);
-    //   }
+      lineWidth.addEventListener("input", function() {
+        ctx.lineWidth = lineWidth.value;
+    }, false); 
       
+       
+
       //If we want change color in manual
       /*MyColorStroke.oninput = function() {
         let currentVal = this.value;
