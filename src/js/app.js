@@ -23,12 +23,8 @@
      * @param {number} canvas.height Get the full height of the screen
      */
     canvas.height    = window.innerHeight;
-    /**
-     * @param {string} ctx.strokeStyle 
-     * RU: Цвет прямоугольного контура.
-     * ENG:Color a rectangular contour.
-     */
-    ctx.strokeStyle  = '#bada55';
+
+
     /**
      * @param {string} ctx.lineJoin 
      * RU:Свойство lineJoin определяет, как соединяются 
@@ -110,7 +106,7 @@
      * ENG: A function for drawing that takes a number (x and y coordinates)
      */
 
-    function draw(e){
+    function drawRainbow(e){
         /**
          * @returns
          * RU: Если isDrawing === false - то выходим из функции
@@ -205,9 +201,9 @@
          * if the line thickness is greater than or equal to 10,
          * or less or equal, then we change the direction to false
          */
-        // if(ctx.lineWidth >= 100 || ctx.lineWidth <= 1){
-        //   direction = !direction;
-        // }
+        if(ctx.lineWidth >= 100 || ctx.lineWidth <= 1){
+          direction = !direction;
+        }
         
         /**
          * @returns ctx.lineWidth++;
@@ -217,11 +213,72 @@
          * ENG: If direction === true, then we increase the thickness, and if
          * direction === false then we reduce the thickness
          */
-      //   if(direction){
-      //     ctx.lineWidth++;
-      // }else{
-      //     ctx.lineWidth--;
-      //  }
+        if(direction){
+          ctx.lineWidth++;
+      }else{
+          ctx.lineWidth--;
+       }
+        
+      }
+
+      function draw(e){
+        /**
+         * @returns
+         * RU: Если isDrawing === false - то выходим из функции
+         * ----------------
+         * ENG: If isDrawing === false, then we exit the function
+         */
+        if(!isDrawing) return;
+        /**
+         * @function beginPath
+         * RU: Создает новый контур. После создания используется 
+         * в дальнейшем командами рисования при построении контуров.
+         * https://developer.mozilla.org/ru/docs/Web/API/Canvas_API/Tutorial/Рисование_фигур
+         * ----------------
+         * ENG: Creates a new path. After the creation is used
+          * In the future, drawing commands when building contours.
+         */
+        ctx.beginPath();
+        /**
+         * @function moveTo
+         * RU: Перемещает перо в точку с координатами x и y.
+         * https://developer.mozilla.org/ru/docs/Web/API/Canvas_API/Tutorial/Рисование_фигур
+         * ----------------
+         * ENG: Moves the pen to a point with the coordinates x and y.
+         */
+        //start from
+        ctx.moveTo(lastX, lastY);
+        /**
+         * @function lineTo
+         * RU: Рисует линию с текущей позиции до позиции, определенной x и y
+         * https://developer.mozilla.org/ru/docs/Web/API/Canvas_API/Tutorial/Рисование_фигур
+         * ----------------
+         * ENG: Draws a line from the current position to the position defined by x and y
+         */
+        //go to
+        ctx.lineTo(e.offsetX, e.offsetY);
+        /**
+         * @function stroke
+         * RU: Рисует фигуру с внешней обводкой.
+         * https://developer.mozilla.org/ru/docs/Web/API/Canvas_API/Tutorial/Рисование_фигур
+         * ----------------
+         * ENG: Draws a shape with an outer stroke.
+         */
+        ctx.stroke();
+        /**
+         * @param {number} lastX = e.offsetX 
+         * @param {number} lastY = e.offsetY
+         * @param {number} e.offsetX 
+         * RU: Координаты по X
+         * ----------------
+         * ENG: Coordinates of X
+         * @param {number} e.offsetY
+         * * RU: Координаты по Y
+         * ----------------
+         * ENG: Coordinates of Y
+         */
+        [lastX, lastY] = [e.offsetX, e.offsetY];
+        
         
       }
 
@@ -253,6 +310,19 @@
        * ENG: When the mouse moves, we perform the functions draw
        */
       canvas.addEventListener('mousemove', draw);
+
+      const changeMode = document.getElementById('switch-1');
+
+      changeMode.onclick = () => {
+        if(changeMode.checked == true){
+          canvas.addEventListener('mousemove', drawRainbow);
+        }else{
+          canvas.removeEventListener('mousemove', drawRainbow);
+          
+          canvas.addEventListener('mousemove', draw);
+        }
+      }
+
       /**
        * @event arrowFunc
        * RU: После вызова функции мы снова присваиваем переменной
@@ -281,18 +351,20 @@
        */
       canvas.addEventListener('mouseout', () => isDrawing = false);
       
-      lineWidth.addEventListener("input", function() {
+      lineWidth.addEventListener("input", () => {
         ctx.lineWidth = lineWidth.value;
     }, false); 
       
        
+const colorInput = document.getElementById('MyColorStroke');
+
 
       //If we want change color in manual
-      /*MyColorStroke.oninput = function() {
+      MyColorStroke.oninput = function() {
         let currentVal = this.value;
           if(currentVal) return ctx.strokeStyle  = currentVal;
         console.log(currentVal);
-      }*/
+      }
       
     //   MySelect.onchange = () => {
     //      let lineJoinValue = document.getElementById("MySelect").value;
