@@ -322,6 +322,16 @@
           ctx.strokeStyle = colorInput.value;
           canvas.addEventListener('mousemove', draw);
         }
+
+        let snackbarContainer = document.querySelector('#demo-snackbar-example');
+        var data = {
+          message: `You change mode`,
+          timeout: 2000,
+          actionHandler: 'das',
+          actionText: ' '
+        };
+        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+
       }
 
       /**
@@ -364,7 +374,14 @@ const colorInput = document.getElementById('MyColorStroke');
       MyColorStroke.oninput = function() {
         let currentVal = this.value;
           if(currentVal) return ctx.strokeStyle  = currentVal;
-        console.log(currentVal);
+        let snackbarContainer = document.querySelector('#demo-snackbar-example');
+        var data = {
+          message: 'Button color changed.',
+          timeout: 2000,
+          actionHandler: currentVal,
+          actionText: 'Undo'
+        };
+        snackbarContainer.MaterialSnackbar.showSnackbar(data);
       }
       
     //   MySelect.onchange = () => {
