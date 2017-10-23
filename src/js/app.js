@@ -318,7 +318,8 @@
           canvas.addEventListener('mousemove', drawRainbow);
         }else{
           canvas.removeEventListener('mousemove', drawRainbow);
-          
+          ctx.lineWidth    = 10;
+          ctx.strokeStyle = colorInput.value;
           canvas.addEventListener('mousemove', draw);
         }
       }
