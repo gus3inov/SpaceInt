@@ -1,16 +1,11 @@
 (function(){
 /**
- * Adding the size of the progress bar
- * @function
- * @callback
+ * @fileOverview Модуль для выросовки контуров
  */
-// document.querySelector('#progressBar').addEventListener('mdl-componentupgraded', function() {
-//     this.MaterialProgress.setProgress(100);
-//   });
 
   /**
-   * @param {string} canvas - take elem <canvas></canvas>
-   * @param {object} ctx Render content (context)
+   * @const {Element} canvas - take elem <canvas></canvas>
+   * @const {object} ctx Render content (context)
    */
     const canvas = document.querySelector('#draw');
     const ctx    = canvas.getContext('2d');
@@ -71,23 +66,23 @@
     ctx.lineWidth    = 10;
     
     /**
-     * @param {boolean} isDrawing
+     * @type {boolean} isDrawing
      * RU: Если кнопка мыши нажата и мы можем рисовать, то true, а иначе false
      * ----------------
      * ENG: If the mouse button is clicked and we can draw, then true, otherwise false
-     * @param {number} lastX 
+     * @type {number} lastX 
      * RU: Определяем положение по x
      * ----------------
      * ENG: Determine the position of x
-     * @param {number} lastY 
+     * @type {number} lastY 
      * RU: Определяем положение по y
      * ----------------
      * ENG: Determine the position of y
-     * @param {number} hue 
+     * @type {number} hue 
      * RU: Оттенок
      * ----------------
      * ENG: Hue
-     * @param {boolean} direction
+     * @type {boolean} direction
      * RU: Напраление по координате изначально true
      * ----------------
      * ENG: The coordinate direction is initially true
@@ -266,8 +261,8 @@
          */
         ctx.stroke();
         /**
-         * @param {number} lastX = e.offsetX 
-         * @param {number} lastY = e.offsetY
+         * @type {number} lastX = e.offsetX 
+         * @type {number} lastY = e.offsetY
          * @param {number} e.offsetX 
          * RU: Координаты по X
          * ----------------
