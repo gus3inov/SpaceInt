@@ -362,13 +362,26 @@
     }, false); 
       
        
-const colorInput = document.getElementById('MyColorStroke');
-
+const colorPenInput = document.getElementById('colorPen');
+const colorBgInput = document.getElementById('colorBg');
 
       //If we want change color in manual
-      MyColorStroke.oninput = function() {
+      colorPenInput.oninput = function() { 
         let currentVal = this.value;
           if(currentVal) return ctx.strokeStyle  = currentVal;
+        let snackbarContainer = document.querySelector('#demo-snackbar-example');
+        var data = {
+          message: 'Button color changed.',
+          timeout: 2000,
+          actionHandler: currentVal,
+          actionText: 'Undo'
+        };
+        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+      }
+      
+      colorBgInput.oninput = function() {
+        let currentVal = this.value;
+          if(currentVal) return canvas.style.backgroundColor  = currentVal;
         let snackbarContainer = document.querySelector('#demo-snackbar-example');
         var data = {
           message: 'Button color changed.',
