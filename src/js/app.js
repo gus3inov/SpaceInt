@@ -17,7 +17,7 @@
      /**
      * @param {number} canvas.height Get the full height of the screen
      */
-    canvas.height    = window.innerHeight;
+    canvas.height    = window.innerHeight - 133;
 
 
     /**
