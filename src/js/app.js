@@ -101,6 +101,20 @@
      * ENG: A function for drawing that takes a number (x and y coordinates)
      */
 
+    // function drawCircle()
+    // {     
+
+      
+   
+    //   canvas.SetBgColor('#000');
+    //   canvas.Circle(200, 200, 100, 10, 'red', 'yellow');
+ 
+    // }
+
+    // addCircle.onclick = () => {
+    //   drawCircle();
+    // }
+
     function drawRainbow(e){
         /**
          * @returns
