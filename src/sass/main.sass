@@ -96,7 +96,7 @@ html, body
   margin-bottom: 16px
 
 #draw
-  border: 2px solid #4C8EFA
+  border: 2px solid $blue
 
 .demo-drawer
   border: none
@@ -108,13 +108,26 @@ html, body
     display: flex
     align-items: center
 
+.material-icons
+  color: $white
+
+.mdl-button
+  background-color: $purple
+  color: $white !important
+  &:hover
+   background-color: $purple
+   $white
+
 .mdl-layout__drawer-button
 	border-radius: 50%
 	outline: 0
 	transition: 0.22s
 	&:hover
-		background: #37474F
-		color: #F5F5F5 !important
+		background: $black
+  i
+    color: $white 
+    &:hover
+		  color: $pink 
 /* iOS Safari specific workaround
 
 /* END iOS Safari specific workaround
@@ -126,6 +139,7 @@ html, body
   justify-content: flex-end
   padding: 16px
   height: 151px
+  background: $purple
 
 .demo-avatar-dropdown
   display: flex
@@ -133,6 +147,7 @@ html, body
   flex-direction: row
   align-items: center
   width: 100%
+  color: $white
 
 .demo-navigation
   flex-grow: 1
@@ -141,15 +156,15 @@ html, body
   display: flex !important
   flex-direction: row
   align-items: center
-  color: rgba(255, 255, 255, 0.56)
+  color: $pink
   font-weight: 500
   &:hover
-    background-color: #00BCD4
-    color: #37474F
+    background-color: $purple
+    color: $white
 
 .demo-navigation .mdl-navigation__link .material-icons
   font-size: 24px
-  color: rgba(255, 255, 255, 0.56)
+  color: $pink
   margin-right: 32px
 
 .demo-card-wide
@@ -157,22 +172,22 @@ html, body
     width: 512px
   >
     .mdl-card__title
-      color: #fff
+      color: $white
       height: 176px
       background: url('https://getmdl.io/assets/demos/welcome_card.jpg') (center / cover)
     .mdl-card__menu
-      color: #fff
+      color: $white
 
 .demo-card-wide
   &.mdl-card
     width: 100%
   >
     .mdl-card__title
-      color: #fff
+      color: $white
       height: 176px
       background: url('https://getmdl.io/assets/demos/welcome_card.jpg') (center / cover)
     .mdl-card__menu
-      color: #fff      
+      color: $white     
 
 .mdl-dialog
   width: 480px
@@ -181,7 +196,7 @@ html, body
   height: 100%
 
 .bottom-toolbar
-  background: #F5F5F5
+  background: $grey
   min-height: 64px
   padding: 0px 30px;
   display: flex
