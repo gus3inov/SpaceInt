@@ -1,4 +1,5 @@
 (function(){
+  
 /**
  * @fileOverview Модуль для выросовки контуров
  */
@@ -11,17 +12,17 @@
     const ctx    = canvas.getContext('2d');
 
     /**
-     * @param {number} canvas.width Get the full width of the screen
+     * @type {number} canvas.width Get the full width of the screen
      */
     canvas.width     = window.innerWidth;
      /**
-     * @param {number} canvas.height Get the full height of the screen
+     * @type {number} canvas.height Get the full height of the screen
      */
     canvas.height    = window.innerHeight - 133;
 
 
     /**
-     * @param {string} ctx.lineJoin 
+     * @type {string} ctx.lineJoin 
      * RU:Свойство lineJoin определяет, как соединяются 
      * два соединительных сегмента (линий, дуг или кривых) 
      * с ненулевой длиной в форме (вырожденные сегменты с нулевой длиной, 
@@ -35,7 +36,7 @@
      */
     ctx.lineJoin     = 'round';
     /**
-     * @param {string} ctx.lineCap  
+     * @type {string} ctx.lineCap  
      * RU: Свойство lineCap определяет, 
      * как выводятся конечные точки каждой строки.
      * Для этого свойства есть 
@@ -52,7 +53,7 @@
      */
     ctx.lineCap      = 'round';
     /**
-     * @param {number} ctx.lineWidth  
+     * @type {number} ctx.lineWidth  
      * RU: Это свойство задает толщину текущей строки. 
      * Значения должны быть положительными. 
      * По умолчанию для этого значения установлено 1.0 единицы.
@@ -86,34 +87,47 @@
      * RU: Напраление по координате изначально true
      * ----------------
      * ENG: The coordinate direction is initially true
+     * @type {boolean} drawFigurBool
+     * RU: Ври
+     * ----------------
+     * ENG: The coordinate direction is initially true
      */
     let isDrawing = false,
     lastX     = 0,
     lastY     = 0,
     hue       = 0,
-    direction = true;
+    direction = true,
+    drawShapeBool = false;
 
     /**
-     * @constructor
-     * @param {number} 
+     * @type
+     */
+    function drawCircle(lastX, lastY)
+    {     
+
+      ctx.beginPath();
+      ctx.arc(lastX, lastY, 50, 0, 2*Math.PI, false);
+      ctx.fillStyle = colorPenInput.value;
+      ctx.fill();
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = colorPenInput.value;
+      ctx.stroke();
+    }
+
+    addCircle.onclick = () => drawShapeBool = true; 
+
+        canvas.onmousedown= (e) =>{
+          if(drawShapeBool){
+            drawCircle(e.offsetX, e.offsetY);
+        }
+      }
+
+    /**
+     * @type {number} 
      * RU: Функция для вырисовывания, которая принимает число (координаты по x и y)
      * ----------------
      * ENG: A function for drawing that takes a number (x and y coordinates)
      */
-
-    // function drawCircle()
-    // {     
-
-      
-   
-    //   canvas.SetBgColor('#000');
-    //   canvas.Circle(200, 200, 100, 10, 'red', 'yellow');
- 
-    // }
-
-    // addCircle.onclick = () => {
-    //   drawCircle();
-    // }
 
     function drawRainbow(e){
         /**
@@ -124,7 +138,7 @@
          */
         if(!isDrawing) return;
         /**
-         * @param {string} ctx.strokeStyle
+         * @type {string} ctx.strokeStyle
          * RU: Hsl - это формат цвета, при движении мыши переменная hue увеличивается
          * и соотвественно за счёт чего цвет меняется
          * ----------------
@@ -169,13 +183,13 @@
          */
         ctx.stroke();
         /**
-         * @param {number} lastX = e.offsetX 
-         * @param {number} lastY = e.offsetY
-         * @param {number} e.offsetX 
+         * @type {number} lastX = e.offsetX 
+         * @type {number} lastY = e.offsetY
+         * @type {number} e.offsetX 
          * RU: Координаты по X
          * ----------------
          * ENG: Coordinates of X
-         * @param {number} e.offsetY
+         * @type {number} e.offsetY
          * * RU: Координаты по Y
          * ----------------
          * ENG: Coordinates of Y
@@ -183,7 +197,7 @@
         [lastX, lastY] = [e.offsetX, e.offsetY];
         
         /**
-         * @param hue
+         * @type hue
          * RU: Увеличиваем оттенок - за счёт чего меняется цвет в hsl формате
          * ----------------
          * ENG: Increase the hue - due to what changes the color in the hsl format
@@ -250,6 +264,7 @@
         ctx.beginPath();
         /**
          * @function moveTo
+         * @param {number, number}
          * RU: Перемещает перо в точку с координатами x и y.
          * https://developer.mozilla.org/ru/docs/Web/API/Canvas_API/Tutorial/Рисование_фигур
          * ----------------
@@ -259,6 +274,7 @@
         ctx.moveTo(lastX, lastY);
         /**
          * @function lineTo
+         * @param {number, number}
          * RU: Рисует линию с текущей позиции до позиции, определенной x и y
          * https://developer.mozilla.org/ru/docs/Web/API/Canvas_API/Tutorial/Рисование_фигур
          * ----------------
@@ -277,11 +293,11 @@
         /**
          * @type {number} lastX = e.offsetX 
          * @type {number} lastY = e.offsetY
-         * @param {number} e.offsetX 
+         * @type {number} e.offsetX 
          * RU: Координаты по X
          * ----------------
          * ENG: Coordinates of X
-         * @param {number} e.offsetY
+         * @type {number} e.offsetY
          * * RU: Координаты по Y
          * ----------------
          * ENG: Coordinates of Y
@@ -360,7 +376,10 @@
        * ENG: When we released the left mouse button of the variable
        * isDrawing is set to false and the work of the draw function is terminated
        */
-      canvas.addEventListener('mouseup', () => isDrawing = false);
+      canvas.addEventListener('mouseup', () => {
+        isDrawing = false;  
+        drawShapeBool = false;
+      });
       /**
        * @event arrowFunc
        * RU: Если мышь вышла за пределы canvas, то переменной
@@ -410,6 +429,5 @@ const colorBgInput = document.getElementById('colorBg');
     //      let lineJoinValue = document.getElementById("MySelect").value;
     //     ctx.lineCap   = lineJoinValue;
     //   }
-
 
   })()
