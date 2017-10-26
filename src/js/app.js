@@ -88,9 +88,9 @@
      * ----------------
      * ENG: The coordinate direction is initially true
      * @type {boolean} drawFigurBool
-     * RU: Ври
+     * RU: Вырисовка фигуры
      * ----------------
-     * ENG: The coordinate direction is initially true
+     * ENG: Drawing a shape
      */
     let isDrawing = false,
     lastX     = 0,
@@ -100,7 +100,7 @@
     drawShapeBool = false;
 
     /**
-     * @type
+     * @param {number, number} drawCircle
      */
     function drawCircle(lastX, lastY)
     {     
@@ -113,7 +113,10 @@
       ctx.strokeStyle = colorPenInput.value;
       ctx.stroke();
     }
-
+    /**
+     * @event click
+     * Change drawShapeBool on true
+     */
     addCircle.onclick = () => drawShapeBool = true; 
 
         canvas.onmousedown= (e) =>{
