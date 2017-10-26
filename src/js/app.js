@@ -339,8 +339,15 @@
        */
       canvas.addEventListener('mousemove', draw);
 
+      /**
+       * @type {Element} 
+       */
       const changeMode = document.getElementById('switch-1');
 
+      /**
+       * @event click 
+       * Change mode
+       */
       changeMode.onclick = () => {
         if(changeMode.checked == true){
           canvas.addEventListener('mousemove', drawRainbow);
@@ -397,11 +404,17 @@
         ctx.lineWidth = lineWidth.value;
     }, false); 
       
-       
-const colorPenInput = document.getElementById('colorPen');
-const colorBgInput = document.getElementById('colorBg');
+        /**
+       * @type {Element}
+       * @type {Element}
+       */
+      const colorPenInput = document.getElementById('colorPen');
+      const colorBgInput = document.getElementById('colorBg');
 
-      //If we want change color in manual
+       /**
+       * @event input 
+       * Change pen color
+       */
       colorPenInput.oninput = function() { 
         let currentVal = this.value;
           if(currentVal) return ctx.strokeStyle  = currentVal;
@@ -415,6 +428,10 @@ const colorBgInput = document.getElementById('colorBg');
         snackbarContainer.MaterialSnackbar.showSnackbar(data);
       }
       
+      /**
+       * @event input 
+       * Change background-color canvas
+       */
       colorBgInput.oninput = function() {
         let currentVal = this.value;
           if(currentVal) return canvas.style.backgroundColor  = currentVal;
