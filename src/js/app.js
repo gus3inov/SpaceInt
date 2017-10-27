@@ -417,7 +417,7 @@
        */
       colorPenInput.oninput = function() { 
         let currentVal = this.value;
-          if(currentVal) return ctx.strokeStyle  = currentVal;
+          if(currentVal) ctx.strokeStyle  = currentVal;
         let snackbarContainer = document.querySelector('#demo-snackbar-example');
         var data = {
           message: 'Button color changed.',
@@ -426,15 +426,20 @@
           actionText: 'Undo'
         };
         snackbarContainer.MaterialSnackbar.showSnackbar(data);
+        localStorage.setItem('colorPen', ctx.strokeStyle)
       }
       
+      let localGetPen     = localStorage.getItem('colorPen');
+      ctx.strokeStyle     = localGetPen;
+      colorPenInput.value = localGetPen;
+
       /**
        * @event input 
        * Change background-color canvas
        */
       colorBgInput.oninput = function() {
         let currentVal = this.value;
-          if(currentVal) return canvas.style.backgroundColor  = currentVal;
+          if(currentVal)  canvas.style.backgroundColor  = currentVal;
         let snackbarContainer = document.querySelector('#demo-snackbar-example');
         var data = {
           message: 'Button color changed.',
@@ -443,7 +448,15 @@
           actionText: 'Undo'
         };
         snackbarContainer.MaterialSnackbar.showSnackbar(data);
+        localStorage.setItem('colorBg', canvas.style.backgroundColor)
       }
+
+    
+      let localGetBg               = localStorage.getItem('colorBg');
+      canvas.style.backgroundColor = localGetBg;
+      colorBgInput.value           = localGetBg;
+      
+      localStorage.setItem('colorPen', canvas.style.backgroundColor)
       
     //   MySelect.onchange = () => {
     //      let lineJoinValue = document.getElementById("MySelect").value;
