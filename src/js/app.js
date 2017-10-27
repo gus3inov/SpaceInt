@@ -402,8 +402,13 @@
       
       lineWidth.addEventListener("input", () => {
         ctx.lineWidth = lineWidth.value;
+        localStorage.setItem('localLineWidth', ctx.lineWidth);
     }, false); 
-      
+
+    let localGetLineWidth = localStorage.getItem('localLineWidth');
+    ctx.lineWidth = localGetLineWidth;
+    lineWidth.value = localGetLineWidth;
+
         /**
        * @type {Element}
        * @type {Element}
