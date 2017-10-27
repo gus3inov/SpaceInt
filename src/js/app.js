@@ -8,8 +8,8 @@
    * @const {Element} canvas - take elem <canvas></canvas>
    * @const {object} ctx Render content (context)
    */
-    const canvas = document.querySelector('#draw');
-    const ctx    = canvas.getContext('2d');
+    const canvas = document.querySelector(`#draw`);
+    const ctx    = canvas.getContext(`2d`);
 
     /**
      * @type {number} canvas.width Get the full width of the screen
@@ -34,7 +34,7 @@
      * two connecting segments (of lines, arcs or curves) with non-zero lengths 
      * in a shape are joined together (degenerate segments with zero lengths, .
      */
-    ctx.lineJoin     = 'round';
+    ctx.lineJoin     = `round`;
     /**
      * @type {string} ctx.lineCap  
      * RU: Свойство lineCap определяет, 
@@ -51,7 +51,7 @@
      * By default this property is set to butt.
      * 
      */
-    ctx.lineCap      = 'round';
+    ctx.lineCap      = `round`;
     /**
      * @type {number} ctx.lineWidth  
      * RU: Это свойство задает толщину текущей строки. 
@@ -326,7 +326,7 @@
        * what is ctx.moveTo (lastX, lastY); triggers and the moveTo function draws
        * from the beginning of this position
        */
-      canvas.addEventListener('mousedown', (e) => {
+      canvas.addEventListener(`mousedown`, (e) => {
         isDrawing = true;
         [lastX, lastY] = [e.offsetX, e.offsetY];
       });
@@ -337,12 +337,12 @@
        * --------------
        * ENG: When the mouse moves, we perform the functions draw
        */
-      canvas.addEventListener('mousemove', draw);
+      canvas.addEventListener(`mousemove`, draw);
 
       /**
        * @type {Element} 
        */
-      const changeMode = document.getElementById('switch-1');
+      const changeMode = document.getElementById(`switch-1`);
 
       /**
        * @event click 
@@ -350,20 +350,20 @@
        */
       changeMode.onclick = () => {
         if(changeMode.checked == true){
-          canvas.addEventListener('mousemove', drawRainbow);
+          canvas.addEventListener(`mousemove`, drawRainbow);
         }else{
-          canvas.removeEventListener('mousemove', drawRainbow);
+          canvas.removeEventListener(`mousemove`, drawRainbow);
           ctx.lineWidth    = 10;
           ctx.strokeStyle = colorInput.value;
-          canvas.addEventListener('mousemove', draw);
+          canvas.addEventListener(`mousemove`, draw);
         }
 
-        let snackbarContainer = document.querySelector('#demo-snackbar-example');
+        let snackbarContainer = document.querySelector(`#demo-snackbar-example`);
         var data = {
           message: `You change mode`,
           timeout: 2000,
-          actionHandler: 'das',
-          actionText: ' '
+          actionHandler: `das`,
+          actionText: ` `
         };
         snackbarContainer.MaterialSnackbar.showSnackbar(data);
 
@@ -377,7 +377,7 @@
        * ENG: After calling the function, we assign the variable again
        * true
        */
-      canvas.addEventListener('mousedown', () => isDrawing = true);
+      canvas.addEventListener(`mousedown`, () => isDrawing = true);
       /**
        * @event arrowFunc
        * RU: Когда мы отпустили левую кнопку мыши переменной
@@ -386,7 +386,7 @@
        * ENG: When we released the left mouse button of the variable
        * isDrawing is set to false and the work of the draw function is terminated
        */
-      canvas.addEventListener('mouseup', () => {
+      canvas.addEventListener(`mouseup`, () => {
         isDrawing = false;  
         drawShapeBool = false;
       });
@@ -398,7 +398,7 @@
        * ENG: If the mouse went beyond the canvas, then the variable
         * isDrawing is set to false and the work of the draw function is terminated
        */
-      canvas.addEventListener('mouseout', () => isDrawing = false);
+      canvas.addEventListener(`mouseout`, () => isDrawing = false);
       
       lineWidth.addEventListener("input", () => {
         ctx.lineWidth = lineWidth.value;
@@ -408,8 +408,8 @@
        * @type {Element}
        * @type {Element}
        */
-      const colorPenInput = document.getElementById('colorPen');
-      const colorBgInput = document.getElementById('colorBg');
+      const colorPenInput = document.getElementById(`colorPen`);
+      const colorBgInput = document.getElementById(`colorBg`);
 
        /**
        * @event input 
@@ -418,20 +418,20 @@
       colorPenInput.oninput = function() { 
         let currentVal = this.value;
           if(currentVal) ctx.strokeStyle  = currentVal;
-        let snackbarContainer = document.querySelector('#demo-snackbar-example');
+        let snackbarContainer = document.querySelector(`#demo-snackbar-example`);
         var data = {
-          message: 'Button color changed.',
+          message: `Button color ${currentVal}`,
           timeout: 2000,
           actionHandler: currentVal,
-          actionText: 'Undo'
+          actionText: `Undo`
         };
         snackbarContainer.MaterialSnackbar.showSnackbar(data);
-        localStorage.setItem('colorPen', ctx.strokeStyle)
+        localStorage.setItem(`colorPen`, ctx.strokeStyle)
       }
       
-      let localGetPen     = localStorage.getItem('colorPen');
+      let localGetPen     = localStorage.getItem(`colorPen`);
       ctx.strokeStyle     = localGetPen;
-      colorPenInput.value = localGetPen;
+      colorPenInput.value = `#${getHexRGBColor(localGetPen)}`;
 
       /**
        * @event input 
@@ -440,15 +440,15 @@
       colorBgInput.oninput = function() {
         let currentVal = this.value;
           if(currentVal)  canvas.style.backgroundColor  = currentVal;
-        let snackbarContainer = document.querySelector('#demo-snackbar-example');
+        let snackbarContainer = document.querySelector(`#demo-snackbar-example`);
         var data = {
-          message: 'Button color changed.',
+          message: `Button color ${currentVal}`,
           timeout: 2000,
           actionHandler: currentVal,
-          actionText: 'Undo'
+          actionText: `Undo`
         };
         snackbarContainer.MaterialSnackbar.showSnackbar(data);
-        localStorage.setItem('colorBg', canvas.style.backgroundColor)
+        localStorage.setItem(`colorBg`, canvas.style.backgroundColor)
       }
 
       function getHexRGBColor(color)
@@ -458,21 +458,20 @@
        
         if(aRGB)
         {
-          color = '';
-          for (var i=1;  i<=3; i++) color += Math.round((aRGB[i][aRGB[i].length-1]=="%"?2.55:1)*parseInt(aRGB[i])).toString(16).replace(/^(.)$/,'0$1');
+          color = ``;
+          for (var i=1;  i<=3; i++) color += Math.round((aRGB[i][aRGB[i].length-1]=="%"?2.55:1)*parseInt(aRGB[i])).toString(16).replace(/^(.)$/,`0$1`);
         }
-        else color = color.replace(/^#?([\da-f])([\da-f])([\da-f])$/i, '$1$1$2$2$3$3');
+        else color = color.replace(/^#?([\da-f])([\da-f])([\da-f])$/i, `$1$1$2$2$3$3`);
          
         return color;
       }
       
 
-      let localGetBg               = localStorage.getItem('colorBg');
+      let localGetBg               = localStorage.getItem(`colorBg`);
       canvas.style.backgroundColor = localGetBg;
-      colorBgInput.value           = localGetBg;
-      console.log(localGetBg);
+      colorBgInput.value           = `#${getHexRGBColor(localGetBg)}`;
       
-      localStorage.setItem('colorPen', canvas.style.backgroundColor)
+      localStorage.setItem(`colorPen`, canvas.style.backgroundColor)
       
     //   MySelect.onchange = () => {
     //      let lineJoinValue = document.getElementById("MySelect").value;
