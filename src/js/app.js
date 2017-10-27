@@ -14,7 +14,7 @@
     /**
      * @type {number} canvas.width Get the full width of the screen
      */
-    canvas.width     = window.innerWidth;
+    canvas.width     = window.innerWidth - 4;
      /**
      * @type {number} canvas.height Get the full height of the screen
      */
