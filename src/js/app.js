@@ -403,7 +403,7 @@
 
       /** 
        * @event input
-       * @returns lineWidth
+       * @returns number
        */
       lineWidth.addEventListener("input", () => {
         ctx.lineWidth = lineWidth.value;
