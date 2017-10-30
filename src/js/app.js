@@ -400,6 +400,11 @@
        */
       canvas.addEventListener(`mouseout`, () => isDrawing = false);
       
+
+      /** 
+       * @event input
+       * @returns lineWidth
+       */
       lineWidth.addEventListener("input", () => {
         ctx.lineWidth = lineWidth.value;
         localStorage.setItem('localLineWidth', ctx.lineWidth);
