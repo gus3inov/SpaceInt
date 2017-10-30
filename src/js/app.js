@@ -410,6 +410,10 @@
         localStorage.setItem('localLineWidth', ctx.lineWidth);
     }, false); 
 
+    /**
+       * @type {number}
+       * localStorage
+       */
     let localGetLineWidth = localStorage.getItem('localLineWidth');
     ctx.lineWidth = localGetLineWidth;
     lineWidth.value = localGetLineWidth;
@@ -421,9 +425,9 @@
       const colorPenInput = document.getElementById(`colorPen`);
       const colorBgInput = document.getElementById(`colorBg`);
 
-       /**
-       * @event input 
-       * Change pen color
+       /** 
+       * @event input
+       * @returns {string}
        */
       colorPenInput.oninput = function() { 
         let currentVal = this.value;
@@ -439,13 +443,17 @@
         localStorage.setItem(`colorPen`, ctx.strokeStyle)
       }
       
+      /**
+       * @type {string}
+       * localStorage
+       */
       let localGetPen     = localStorage.getItem(`colorPen`);
       ctx.strokeStyle     = localGetPen;
       colorPenInput.value = getHexRGBColor(localGetPen);
       
-      /**
-       * @event input 
-       * Change background-color canvas
+      /** 
+       * @event input
+       * @returns {string}
        */
       colorBgInput.oninput = function() {
         let currentVal = this.value;
@@ -461,6 +469,10 @@
         localStorage.setItem(`colorBg`, canvas.style.backgroundColor)
       }
 
+      /** 
+       * @returns {string}
+       * @param {string}
+       */
       function getHexRGBColor(color)
       {
         color = color.replace(/\s/g,"");
@@ -476,7 +488,10 @@
         return color;
       }
       
-
+      /**
+       * @type {string}
+       * localStorage
+       */
       let localGetBg               =    localStorage.getItem(`colorBg`);
       canvas.style.backgroundColor = localGetBg;
       colorBgInput.value           = `#${getHexRGBColor(localGetBg)}`;
