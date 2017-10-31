@@ -13,8 +13,6 @@
         });
      })()
 
-     
-       (()=>{
          
         const openMenu = document.querySelector(`#openFiguresBar`);
         const closeMenu = document.querySelector(`#closeFiguresBar`);
@@ -31,6 +29,4 @@
             Menu.classList.remove(`open`);
           }
         };
-
-       })()
 })()
