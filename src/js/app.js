@@ -440,6 +440,7 @@
           actionText: `Undo`
         };
         snackbarContainer.MaterialSnackbar.showSnackbar(data);
+        addCircle.style.backgroundColor = currentVal;
         localStorage.setItem(`colorPen`, ctx.strokeStyle)
       }
       
@@ -450,6 +451,7 @@
       let localGetPen     = localStorage.getItem(`colorPen`);
       ctx.strokeStyle     = localGetPen;
       colorPenInput.value = getHexRGBColor(localGetPen);
+      addCircle.style.backgroundColor = localGetPen;
       
       /** 
        * @event input
@@ -495,10 +497,40 @@
       let localGetBg               =    localStorage.getItem(`colorBg`);
       canvas.style.backgroundColor = localGetBg;
       colorBgInput.value           = `#${getHexRGBColor(localGetBg)}`;
+
+      const eraserDrawElem = document.getElementById('eraserDraw');
+
+      /**
+       * @type {boolean} isClearing
+       * for check we choose eraser or not 
+       */
+      let isClearing = false;
       
-    //   MySelect.onchange = () => {
-    //      let lineJoinValue = document.getElementById("MySelect").value;
-    //     ctx.lineCap   = lineJoinValue;
-    //   }
+      /**
+       * @returns {number}
+       * @param {*} e 
+       * Eraser function 
+       */
+     function eraserDraw(e){
+      if(!isClearing) return;
+      ctx.beginPath();
+      ctx.globalCompositeOperation="destination-out";
+      ctx.arc(lastX,lastY,8,0,Math.PI*2,false);
+      ctx.fill();
+      [lastX, lastY] = [e.offsetX, e.offsetY];
+      
+     }
+
+
+     eraserDrawElem.onclick = () => isClearing = true;
+
+     canvas.addEventListener('mousedown', (e) => {
+      if(!isClearing) return;
+      [lastX, lastY] = [e.offsetX, e.offsetY];
+    });
+                  
+    canvas.addEventListener('mousemove', eraserDraw );
+    canvas.addEventListener('mouseup', () => isClearing = false);
+    canvas.addEventListener('mouseout', () => isClearing = false);
 
   })()
